@@ -28,16 +28,15 @@
 
 ## 📖 Table of Contents
 1. [Key Features](#-key-features)
-2. [System Architecture](#-system-architecture)
-3. [Core Mathematical Optimization Model](#-core-mathematical-optimization-model)
-4. [Standalone Offline Mode & Fallback Solver](#-standalone-offline-mode--fallback-solver)
-5. [Tech Stack](#-tech-stack)
-6. [Local Development Setup](#-local-development-setup)
-7. [Containerized Launch (Docker Compose)](#-containerized-launch-docker-compose)
-8. [Netlify Static Deployment](#-netlify-static-deployment)
-9. [Excel Timetable Specifications](#-excel-timetable-specifications)
-10. [Running Unit & Integration Tests](#-running-unit--integration-tests)
-11. [License](#-license)
+2. [Core Mathematical Optimization Model](#-core-mathematical-optimization-model)
+3. [Standalone Offline Mode & Fallback Solver](#-standalone-offline-mode--fallback-solver)
+4. [Tech Stack](#-tech-stack)
+5. [Local Development Setup](#-local-development-setup)
+6. [Containerized Launch (Docker Compose)](#-containerized-launch-docker-compose)
+7. [Netlify Static Deployment](#-netlify-static-deployment)
+8. [Excel Timetable Specifications](#-excel-timetable-specifications)
+9. [Running Unit & Integration Tests](#-running-unit--integration-tests)
+10. [License](#-license)
 
 ---
 
@@ -52,29 +51,8 @@
 
 ---
 
-## 📐 System Architecture
 
-ProxEase works in a hybrid client-server paradigm when local servers are active, and seamlessly downgrades to a local-first browser application when deployed serverless on static CDNs like Netlify.
-
-```mermaid
-graph TD
-    User([School Coordinator]) -->|Interacts| FE[Next.js 16 Frontend]
-    FE -->|API Requests| BE[FastAPI Backend]
-    FE -->|Fallback Store| LS[(Browser LocalStorage)]
     
-    subgraph Client-Side Context (Offline Fallback)
-        FE
-        LS
-        JS[MRV Heuristic Solver]
-    end
-    
-    subgraph Server-Side Context (Online Mode)
-        BE -->|Query/Update| DB[(SQLite Database spms.db)]
-        BE -->|Constraint Solving| CP[Google OR-Tools CP-SAT]
-    end
-```
-
----
 
 ## 🧮 Core Mathematical Optimization Model
 
