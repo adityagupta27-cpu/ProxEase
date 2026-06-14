@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./backend/spms.db:/app/spms.db
+      - ./Time table 25-26.xlsx:/Users/adityagupta/Desktop/Mummy/Time table 25-26.xlsx
+    environment:
+      - DATABASE_URL=sqlite:////app/spms.db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8001/api/v1
+    depends_on:
+      - backend

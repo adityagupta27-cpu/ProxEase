@@ -1,0 +1,480 @@
+@import "tailwindcss";
+
+:root {
+  /* Premium Dark Mode (Default) - Linear & Stripe aesthetics */
+  --background: #09090b; /* zinc-950 */
+  --foreground: #fafafa; /* zinc-50 */
+  --surface-sec: #111114; /* Solid secondary dark surface */
+  --card-bg: #18181b; /* zinc-900 */
+  --card-hover: #232326; /* Slightly lighter zinc for hover states */
+  --card-border: rgba(255, 255, 255, 0.06); /* Thin borders */
+  
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa; /* zinc-400 */
+  --text-muted: #71717a; /* zinc-500 */
+  
+  --accent: #8b5cf6; /* Violet-500 */
+  --success: #10b981; /* Emerald-500 */
+  --warning: #f59e0b; /* Amber-500 */
+  --danger: #ef4444; /* Red-500 */
+}
+
+html.light {
+  /* Soft Premium Light Mode - Linear & Stripe dashboard styling */
+  --background: #F7F8FA;
+  --foreground: #18181B;
+  --surface-sec: #F3F4F6;
+  --card-bg: #FCFCFD;
+  --card-hover: #FFFFFF;
+  --card-border: rgba(232, 234, 240, 0.7); /* E8EAF0 at 70% opacity */
+  
+  --text-primary: #18181B;
+  --text-secondary: #52525B;
+  --text-muted: #71717A;
+  
+  --accent: #7C3AED;
+  --success: #059669;
+  --warning: #D97706;
+  --danger: #DC2626;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-indigo-custom: var(--accent);
+  --color-purple-custom: var(--accent);
+
+  /* Set typography values matching the design hierarchy */
+  --text-xs: 0.8125rem;     /* 13px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 0.9375rem;   /* 15px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.25rem;       /* 20px */
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-3xl: 2.25rem;      /* 36px */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Outfit', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Redefined typography wrappers for high-fidelity rendering */
+.page-title {
+  font-size: 2.25rem !important; /* 36px */
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--text-primary) !important;
+}
+
+.section-title {
+  font-size: 1.5rem !important; /* 24px */
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text-primary) !important;
+}
+
+.card-metric {
+  font-size: 2.625rem !important; /* 42px */
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.04em !important;
+  color: var(--text-primary) !important;
+}
+
+.card-label {
+  font-size: 0.875rem !important; /* 14px */
+  font-weight: 500 !important;
+  color: var(--text-secondary) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.body-text {
+  font-size: 0.9375rem !important; /* 15px */
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.small-text {
+  font-size: 0.8125rem !important; /* 13px */
+  line-height: 1.5 !important;
+  color: var(--text-muted) !important;
+}
+
+/* Premium Panel Cards */
+.glass-panel {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+  border-radius: 16px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background-color: var(--card-hover) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.light .glass-panel:hover {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Micro-animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Compact status badges matching Linear */
+.badge-class {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #c084fc !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+}
+
+.badge-special {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.2) !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+}
+
+.badge-free {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+}
+
+.badge-absent {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+  white-space: nowrap !important;
+}
+
+/* Light Mode Badge overrides */
+html.light .badge-class {
+  background: rgba(124, 58, 237, 0.06) !important;
+  color: #6d28d9 !important;
+  border-color: rgba(124, 58, 237, 0.15) !important;
+}
+
+html.light .badge-special {
+  background: rgba(245, 158, 11, 0.06) !important;
+  color: #b45309 !important;
+  border-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+html.light .badge-free {
+  background: rgba(16, 185, 129, 0.06) !important;
+  color: #047857 !important;
+  border-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+html.light .badge-absent {
+  background: rgba(220, 38, 38, 0.06) !important;
+  color: #b91c1c !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+
+/* Specific text color classes matching typography mapping */
+html:not(.light) .text-slate-100 { color: var(--text-primary) !important; }
+html:not(.light) .text-slate-200 { color: var(--text-primary) !important; }
+html:not(.light) .text-slate-300 { color: var(--text-secondary) !important; }
+html:not(.light) .text-slate-400 { color: var(--text-secondary) !important; }
+html:not(.light) .text-slate-500 { color: var(--text-muted) !important; }
+html:not(.light) .text-slate-600 { color: var(--text-muted) !important; }
+
+html.light .text-slate-100 { color: var(--text-primary) !important; }
+html.light .text-slate-200 { color: var(--text-primary) !important; }
+html.light .text-slate-300 { color: var(--text-secondary) !important; }
+html.light .text-slate-400 { color: var(--text-secondary) !important; }
+html.light .text-slate-500 { color: var(--text-muted) !important; }
+html.light .text-slate-600 { color: var(--text-muted) !important; }
+
+/* Sticky table header styles */
+.data-table-container {
+  overflow: auto;
+  max-height: 500px;
+}
+
+table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--surface-sec) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid var(--card-border) !important;
+  z-index: 10;
+}
+
+/* Global Form Element styling to respect light/dark mode variables */
+select, 
+input[type="text"], 
+input[type="date"], 
+input[type="file"],
+textarea {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+select option {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Force specific select and input overrides for Tailwind bg-slate-900 / bg-zinc-900 / border-slate-700 / etc. in light mode */
+html.light select,
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+  border-color: #d4d4d8 !important; /* zinc-300 */
+}
+
+/* Overwrite hardcoded dark backgrounds in light mode to match the theme background/card structure */
+html.light .bg-slate-900,
+html.light .bg-zinc-900,
+html.light .bg-zinc-950\/80,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-900\/40,
+html.light .bg-slate-900\/60,
+html.light .bg-zinc-900\/60 {
+  background-color: var(--card-bg) !important;
+}
+
+html.light .bg-zinc-950,
+html.light .bg-slate-950 {
+  background-color: var(--background) !important;
+}
+
+/* Overwrite hardcoded dark border colors in light mode to match zinc-200 / zinc-300 */
+html.light .border-slate-700,
+html.light .border-slate-800,
+html.light .border-zinc-800,
+html.light .border-zinc-850,
+html.light .border-zinc-800\/80,
+html.light .border-zinc-800\/60,
+html.light .border-slate-800\/60 {
+  border-color: var(--card-border) !important;
+}
+
+/* Overwrite hardcoded dark text classes that get converted to text-primary in light mode */
+html.light .text-slate-100,
+html.light .text-zinc-100,
+html.light .text-slate-200,
+html.light .text-zinc-200,
+html.light .text-zinc-300,
+html.light .text-slate-300 {
+  color: var(--text-primary) !important;
+}
+
+html.light .text-slate-400,
+html.light .text-zinc-400 {
+  color: var(--text-secondary) !important;
+}
+
+html.light .text-slate-500,
+html.light .text-zinc-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Ensure all page, sidebar, and section header titles with from-white gradients are highly readable in light mode */
+html.light *[class*="from-white"] {
+  background-image: linear-gradient(to right, #18181B, #7C3AED) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Brand Logo styling */
+.brand-logo-text {
+  background-image: linear-gradient(to right, #FFFFFF, #E4E4E7, #8B5CF6) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+
+html.light .brand-logo-text {
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  color: #18181B !important; /* Extremely readable solid charcoal in light mode */
+}
+
+/* ==========================================================================
+   New Premium Light Theme System Specific Overrides (Linear & Stripe Style)
+   ========================================================================== */
+
+/* 1. Sidebar Color System Overrides */
+html.light aside {
+  background-color: #FAFAFB !important;
+  border-right: 1px solid rgba(232, 234, 240, 0.7) !important;
+}
+
+html.light aside nav a {
+  color: #52525B !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+
+html.light aside nav a:hover {
+  background-color: #F3F4F6 !important;
+  color: #18181B !important;
+}
+
+/* Active navigation item in light mode */
+html.light aside nav a[class*="bg-zinc-900"],
+html.light aside nav a[class*="text-white"] {
+  background-color: #F3F0FF !important;
+  color: #6D28D9 !important;
+  border-color: rgba(109, 40, 217, 0.15) !important;
+}
+
+html.light aside nav a[class*="bg-zinc-900"] svg,
+html.light aside nav a[class*="text-white"] svg {
+  color: #6D28D9 !important;
+}
+
+html.light aside nav a:hover svg {
+  color: #18181B !important;
+}
+
+/* Sidebar Logo & Toggle styling in light mode */
+html.light aside div[class*="bg-indigo-600/15"] {
+  background-color: #F5F3FF !important;
+  color: #7C3AED !important;
+  border-color: rgba(124, 58, 246, 0.15) !important;
+}
+
+html.light aside div[class*="bg-indigo-600/15"] svg {
+  color: #7C3AED !important;
+}
+
+html.light aside button[class*="bg-zinc-900/40"] {
+  background-color: #F3F4F6 !important;
+  color: #52525B !important;
+  border-color: rgba(232, 234, 240, 0.7) !important;
+}
+
+html.light aside button[class*="bg-zinc-900/40"]:hover {
+  background-color: #E8EAF0 !important;
+  color: #18181B !important;
+}
+
+/* 2. Glass Panel & KPI Card Elevation and Hover States */
+html.light .glass-panel {
+  background-color: #FCFCFD !important;
+  border: 1px solid rgba(232, 234, 240, 0.7) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  transition: all 200ms ease !important;
+}
+
+html.light .glass-panel:hover {
+  background-color: #FFFFFF !important;
+  border-color: #D8DAE3 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* KPI Cards at the top (under page header grids) explicitly default to pure white */
+html.light div[class*="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"] > div.glass-panel,
+html.light div[class*="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"] > a.glass-panel {
+  background-color: #FFFFFF !important;
+}
+
+/* 3. Muted Badge & Status States (Non-aggressive, premium colors) */
+html.light .badge-class {
+  background-color: #F5F3FF !important;
+  color: #7C3AED !important;
+  border-color: rgba(124, 58, 246, 0.15) !important;
+}
+
+html.light .badge-special {
+  background-color: #FFFBEB !important;
+  color: #D97706 !important;
+  border-color: rgba(217, 119, 6, 0.15) !important;
+}
+
+html.light .badge-free {
+  background-color: #ECFDF5 !important;
+  color: #059669 !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html.light .badge-absent {
+  background-color: #FEF2F2 !important;
+  color: #DC2626 !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+
+/* Overwrite other warning/danger backgrounds like uvicorn log event alerts in light mode */
+html.light div[class*="bg-rose-500/10"],
+html.light div[class*="bg-rose-500\/10"] {
+  background-color: #FEF2F2 !important;
+  color: #DC2626 !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+
+html.light div[class*="bg-emerald-500/10"],
+html.light div[class*="bg-emerald-500\/10"] {
+  background-color: #ECFDF5 !important;
+  color: #059669 !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html.light div[class*="bg-indigo-500/10"],
+html.light div[class*="bg-indigo-500\/10"] {
+  background-color: #F5F3FF !important;
+  color: #7C3AED !important;
+  border-color: rgba(124, 58, 246, 0.15) !important;
+}
