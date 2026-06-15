@@ -36,7 +36,7 @@
 7. [Netlify Static Deployment](#-netlify-static-deployment)
 8. [Excel Timetable Specifications](#-excel-timetable-specifications)
 9. [Running Unit & Integration Tests](#-running-unit--integration-tests)
-10. [License](#-license)
+
 
 ---
 
@@ -235,6 +235,4 @@ cd backend
 
 ---
 
-## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
